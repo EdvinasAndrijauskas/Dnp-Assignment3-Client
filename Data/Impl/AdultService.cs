@@ -42,16 +42,7 @@ namespace Managing_Adults.Data.Impl
             HttpResponseMessage responseMessage = await client.PostAsync("https://localhost:5003/Adults", content);
             return responseMessage.StatusCode;
         }
-
-        public async Task AddAdultAsync(Adult adult)
-        {
-            string todoSerialized = JsonSerializer.Serialize(adult);
-            HttpContent content = new StringContent(todoSerialized,
-                Encoding.UTF8,
-                "application/json");
-            await client.PutAsync("http://dnp.metamate.me/Adults", content);
-        }
-
+        
         public async Task RemoveAdultAsync(int adultId)
         {
             await client.DeleteAsync($"{uri}/Adults/{adultId}");
